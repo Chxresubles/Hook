@@ -1,8 +1,7 @@
 #ifndef UTILS_H
 #define UTILS_H
-#include <stdlib.h>
-#include <cstring>
+#include "mongoose.h"
 
-char** split(const char* char_array, const char delimiter, int& splits);
+mg_str* split(const mg_str char_array, const char delimiter, int& splits);
 
 #endif //UTILS_H
