@@ -15,7 +15,7 @@ static void fn(struct mg_connection *c, int ev, void *ev_data, void *fn_data) {
 		// Cast the event data to HTTP message
 		struct mg_http_message* hm = (struct mg_http_message*)ev_data;
 
-		// Route to search musics, artists, playlists, ... from the query /search
+		// Route to search musics, artists, playlists, ... from the query /search?query=XXX
 		if (mg_http_match_uri(hm, "/search")) {
 			mg_http_reply(c, 200, "", "{\"result\": \"search\"}\n");
 
@@ -38,17 +38,17 @@ static void fn(struct mg_connection *c, int ev, void *ev_data, void *fn_data) {
 		else if (mg_http_match_uri(hm, "/get/line")) {
 			mg_http_reply(c, 200, "", "{\"result\": \"get line\"}\n");
 
-		// Route to get the musics from a given album /get/album
+		// Route to get the musics from a given album /get/album?query=XXX(&artist=XXX)
 		}
 		else if (mg_http_match_uri(hm, "/get/album")) {
 			mg_http_reply(c, 200, "", "{\"result\": \"get album\"}\n");
 
-		// Route to get the musics from a given artist /get/artist
+		// Route to get the musics from a given artist /get/artist?query=XXX
 		}
 		else if (mg_http_match_uri(hm, "/get/artist")) {
 			mg_http_reply(c, 200, "", "{\"result\": \"get artist\"}\n");
 
-		// Route to get the musics from a given playlist /get/playlist
+		// Route to get the musics from a given playlist /get/playlist?query=XXX
 		}
 		else if (mg_http_match_uri(hm, "/get/playlist")) {
 			mg_http_reply(c, 200, "", "{\"result\": \"get playlist\"}\n");
@@ -58,7 +58,7 @@ static void fn(struct mg_connection *c, int ev, void *ev_data, void *fn_data) {
 		else if (mg_http_match_uri(hm, "/get/all")) {
 			mg_http_reply(c, 200, "", "{\"result\": \"get all\"}\n");
 
-		// Route to get the musics from the given query /get
+		// Route to get the musics from the given query /get?title=XXX(&artist=XXX)
 		}
 		else if (mg_http_match_uri(hm, "/get")) {
 			mg_http_reply(c, 200, "", "{\"result\": \"get\"}\n");
@@ -88,26 +88,27 @@ static void fn(struct mg_connection *c, int ev, void *ev_data, void *fn_data) {
 		else if (mg_http_match_uri(hm, "/play/previous")) {
 			mg_http_reply(c, 200, "", "{\"result\": \"play previous\"}\n");
 
-		// Route to get a music from a given artist /play/artist
+		// Route to get a music from a given artist /play/artist?query=XXX
 		}
 		else if (mg_http_match_uri(hm, "/play/artist")) {
 			mg_http_reply(c, 200, "", "{\"result\": \"play artist\"}\n");
 
-		// Route to get a music from a given album /play/album
+		// Route to get a music from a given album /play/album?query=XXX
 		}
 		else if (mg_http_match_uri(hm, "/play/album")) {
 			mg_http_reply(c, 200, "", "{\"result\": \"play album\"}\n");
 
-		// Route to get a music from a given playlist /play/playlist
+		// Route to get a music from a given playlist /play/playlist?query=XXX(&artist=XXX)
 		}
 		else if (mg_http_match_uri(hm, "/play/playlist")) {
 			mg_http_reply(c, 200, "", "{\"result\": \"play playlist\"}\n");
 
-		// Route to get the musics from the given query /play
+		// Route to get the musics from the given query /play?title=XXX&container=XXX(&artist=XXX)(&playlist=XXX)
 		}
 		else if (mg_http_match_uri(hm, "/play")) {
 			mg_http_reply(c, 200, "", "{\"result\": \"play\"}\n");
 		}
+		// Route to get or set the play order (random or not) /random(?set=XXX)
 		else if (mg_http_match_uri(hm, "/random")) {
 			mg_http_reply(c, 200, "", "{\"result\": \"random\"}\n");
 		}
