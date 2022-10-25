@@ -15,18 +15,23 @@ static void fn(struct mg_connection *c, int ev, void *ev_data, void *fn_data) {
 		// Cast the event data to HTTP message
 		struct mg_http_message* hm = (struct mg_http_message*)ev_data;
 
-		// Route to search musics from the query /search
+		// Route to search musics, artists, playlists, ... from the query /search
 		if (mg_http_match_uri(hm, "/search")) {
 			mg_http_reply(c, 200, "", "{\"result\": \"search\"}\n");
-
-		// Route to get the next music in line /get/next
-		} else if (mg_http_match_uri(hm, "/get/next")) {
-			mg_http_reply(c, 200, "", "{\"result\": \"get next\"}\n");
 
 		// Route to get the previous music in line /get/previous
 		}
 		else if (mg_http_match_uri(hm, "/get/previous")) {
 			mg_http_reply(c, 200, "", "{\"result\": \"get previous\"}\n");
+
+		// Route to get the current music in line /get/current
+		}
+		else if (mg_http_match_uri(hm, "/get/current")) {
+			mg_http_reply(c, 200, "", "{\"result\": \"get current\"}\n");
+
+		// Route to get the next music in line /get/next
+		} else if (mg_http_match_uri(hm, "/get/next")) {
+			mg_http_reply(c, 200, "", "{\"result\": \"get next\"}\n");
 
 		// Route to get the musics that have been be played and will be played /get/line
 		}
@@ -38,20 +43,20 @@ static void fn(struct mg_connection *c, int ev, void *ev_data, void *fn_data) {
 		else if (mg_http_match_uri(hm, "/get")) {
 			mg_http_reply(c, 200, "", "{\"result\": \"get\"}\n");
 
-		// Route to list the playlist from the user /list/playlist
+		// Route to list the playlists from the user /list/playlists
 		}
-		else if (mg_http_match_uri(hm, "/list/playlist")) {
-			mg_http_reply(c, 200, "", "{\"result\": \"list playlist\"}\n");
+		else if (mg_http_match_uri(hm, "/list/playlists")) {
+			mg_http_reply(c, 200, "", "{\"result\": \"list playlists\"}\n");
 
-		// Route to list the album from the given artist /list/album?artist=XXX
+		// Route to list the albums from the given artist /list/albums?artist=XXX
 		}
-		else if (mg_http_match_uri(hm, "/list/album")) {
-			mg_http_reply(c, 200, "", "{\"result\": \"list album\"}\n");
+		else if (mg_http_match_uri(hm, "/list/albums")) {
+			mg_http_reply(c, 200, "", "{\"result\": \"list albums\"}\n");
 
-		// Route to list the artists /list/artist
+		// Route to list the artists /list/artists
 		}
-		else if (mg_http_match_uri(hm, "/list/artist")) {
-			mg_http_reply(c, 200, "", "{\"result\": \"list artist\"}\n");
+		else if (mg_http_match_uri(hm, "/list/artists")) {
+			mg_http_reply(c, 200, "", "{\"result\": \"list artists\"}\n");
 
 		// Route to get the next music in line /play/next
 		}
