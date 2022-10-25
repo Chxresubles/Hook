@@ -38,6 +38,26 @@ static void fn(struct mg_connection *c, int ev, void *ev_data, void *fn_data) {
 		else if (mg_http_match_uri(hm, "/get/line")) {
 			mg_http_reply(c, 200, "", "{\"result\": \"get line\"}\n");
 
+		// Route to get the musics from a given album /get/album
+		}
+		else if (mg_http_match_uri(hm, "/get/album")) {
+			mg_http_reply(c, 200, "", "{\"result\": \"get album\"}\n");
+
+		// Route to get the musics from a given artist /get/artist
+		}
+		else if (mg_http_match_uri(hm, "/get/artist")) {
+			mg_http_reply(c, 200, "", "{\"result\": \"get artist\"}\n");
+
+		// Route to get the musics from a given playlist /get/playlist
+		}
+		else if (mg_http_match_uri(hm, "/get/playlist")) {
+			mg_http_reply(c, 200, "", "{\"result\": \"get playlist\"}\n");
+
+		// Route to get all the musics in the server /get/all
+		}
+		else if (mg_http_match_uri(hm, "/get/all")) {
+			mg_http_reply(c, 200, "", "{\"result\": \"get all\"}\n");
+
 		// Route to get the musics from the given query /get
 		}
 		else if (mg_http_match_uri(hm, "/get")) {
@@ -68,10 +88,28 @@ static void fn(struct mg_connection *c, int ev, void *ev_data, void *fn_data) {
 		else if (mg_http_match_uri(hm, "/play/previous")) {
 			mg_http_reply(c, 200, "", "{\"result\": \"play previous\"}\n");
 
+		// Route to get a music from a given artist /play/artist
+		}
+		else if (mg_http_match_uri(hm, "/play/artist")) {
+			mg_http_reply(c, 200, "", "{\"result\": \"play artist\"}\n");
+
+		// Route to get a music from a given album /play/album
+		}
+		else if (mg_http_match_uri(hm, "/play/album")) {
+			mg_http_reply(c, 200, "", "{\"result\": \"play album\"}\n");
+
+		// Route to get a music from a given playlist /play/playlist
+		}
+		else if (mg_http_match_uri(hm, "/play/playlist")) {
+			mg_http_reply(c, 200, "", "{\"result\": \"play playlist\"}\n");
+
 		// Route to get the musics from the given query /play
 		}
 		else if (mg_http_match_uri(hm, "/play")) {
 			mg_http_reply(c, 200, "", "{\"result\": \"play\"}\n");
+		}
+		else if (mg_http_match_uri(hm, "/random")) {
+			mg_http_reply(c, 200, "", "{\"result\": \"random\"}\n");
 		}
 		else {
 			// Get the artist and song name from the URI

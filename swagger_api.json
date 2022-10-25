@@ -127,6 +127,158 @@
         }
       }
     },
+    "/get/album": {
+      "get": {
+        "summary": "Get the musics infos of the songs in the wanted album.",
+        "description": "By passing an album name and optionally the artist name, you can get the music infos from an album.",
+        "parameters": [
+          {
+            "name": "query",
+            "in": "query",
+            "description": "The album name to look up.",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "artist",
+            "in": "query",
+            "description": "The artist to look up.",
+            "required": false,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of music infos in the given album.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/musicInfos"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Missing query string."
+          },
+          "404": {
+            "description": "Album not found."
+          }
+        }
+      }
+    },
+    "/get/artist": {
+      "get": {
+        "summary": "Get the musics infos of the songs from the given artist.",
+        "description": "By passing an artist name, you can get the music infos from an album.",
+        "parameters": [
+          {
+            "name": "query",
+            "in": "query",
+            "description": "The artist to look up.",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of music infos from the given artist.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/musicInfos"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Missing query string."
+          },
+          "404": {
+            "description": "Artist not found."
+          }
+        }
+      }
+    },
+    "/get/playlist": {
+      "get": {
+        "summary": "Get the musics infos of the songs in a given playlist.",
+        "description": "By passing an playlist name, you can get the music infos from a playlist.",
+        "parameters": [
+          {
+            "name": "query",
+            "in": "query",
+            "description": "The playlist to look up.",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of music infos in the given playlist.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/musicInfos"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Missing query string."
+          },
+          "404": {
+            "description": "Playlist not found."
+          }
+        }
+      }
+    },
+    "/get/all": {
+      "get": {
+        "summary": "Get all the musics infos on the server.",
+        "description": "Get all the musics infos that are available on the server.",
+        "responses": {
+          "200": {
+            "description": "List of all the music infos.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/musicInfos"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/get": {
       "get": {
         "summary": "Get the musics infos from the given query.",
@@ -292,6 +444,131 @@
         }
       }
     },
+    "/play/artist": {
+      "get": {
+        "summary": "Play a music from a given artist.",
+        "description": "By passing the artist name, you can get the wanted music file.",
+        "parameters": [
+          {
+            "name": "query",
+            "in": "query",
+            "description": "Artist of the song to play.",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Music file from the wanted artist.",
+            "content": {
+              "audio/mpeg": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Missing query string."
+          },
+          "404": {
+            "description": "Artist not found."
+          }
+        }
+      }
+    },
+    "/play/album": {
+      "get": {
+        "summary": "Play a music from a given album.",
+        "description": "By passing the album name and optionally the artist name, you can get the wanted music file.",
+        "parameters": [
+          {
+            "name": "query",
+            "in": "query",
+            "description": "Album of the song to play.",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "artist",
+            "in": "query",
+            "description": "Artist of the song to play.",
+            "required": false,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Music file from the wanted album.",
+            "content": {
+              "audio/mpeg": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Missing query string."
+          },
+          "404": {
+            "description": "Album not found."
+          }
+        }
+      }
+    },
+    "/play/playlist": {
+      "get": {
+        "summary": "Play a music from a given playlist.",
+        "description": "By passing the playlist name, you can get the wanted music file.",
+        "parameters": [
+          {
+            "name": "query",
+            "in": "query",
+            "description": "Playlist to play.",
+            "required": false,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Music file from the wanted playlist.",
+            "content": {
+              "audio/mpeg": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Missing query string."
+          },
+          "404": {
+            "description": "Playlist not found."
+          }
+        }
+      }
+    },
     "/play": {
       "get": {
         "summary": "Play the music from the given query.",
@@ -318,6 +595,28 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "container",
+            "in": "query",
+            "description": "From which place should the music be played. Should be in playlist, album, artist, all.",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "playlist",
+            "in": "query",
+            "description": "The name of the playlist in which to play the song.",
+            "required": false,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -337,6 +636,37 @@
           },
           "404": {
             "description": "Music not found."
+          }
+        }
+      }
+    },
+    "/random": {
+      "get": {
+        "summary": "Set to play the music randomly or not.",
+        "description": "By passing true of false, set to play the songs in order or randomly. If nothing is passed, the server returns the current play order.",
+        "parameters": [
+          {
+            "name": "set",
+            "in": "query",
+            "description": "true to set random play, false to set in order play.",
+            "required": false,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "true if the music is playing randomly, false if the music is playing in order.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "boolean"
+                }
+              }
+            }
           }
         }
       }
