@@ -26,6 +26,10 @@ $ build/Hook.exe
 
 The server will listen on http://127.0.0.1:80. It will list the files present in the `build` directory.
 
+# Server API
+
+The [server API](swagger_api.json) is described using a [Swagger API](https://swagger.io/).
+
 # Made with
 This project was made using:
 * [mongoose](https://github.com/cesanta/mongoose)
