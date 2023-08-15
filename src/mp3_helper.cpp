@@ -4,7 +4,7 @@
 mp3_infos* mp3_get_infos(char* artist, char* song_name) {
 	// Read JSON file
 	size_t size = 0;
-	char* data = mg_file_read(&mg_fs_posix, "music.json", &size);
+	char* data = mg_file_read(&mg_fs_posix, "songs/songs.json", &size);
 	mg_str json_content = mg_str_n(data, size);
 
 	// Check if the song exists
@@ -38,7 +38,7 @@ mp3_infos* mp3_get_infos(char* artist, char* song_name) {
 
 	path = mg_mprintf("$.%s.%s.filename", artist, song_name);
 	char* filename = mg_json_get_str(json_content, path);
-	infos->filename = mg_str(mg_mprintf("music/%s", filename));
+	infos->filename = mg_str(mg_mprintf("songs/%s", filename));
 	free(path); // Don't forget to free the path
 	free(filename); // Don't forget to free the filename
 
