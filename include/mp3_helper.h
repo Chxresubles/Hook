@@ -12,6 +12,8 @@ struct mp3_infos {
 	struct mg_str filename;	// File name
 };
 
+typedef struct mp3_infos mp3_infos;
+
 mp3_infos* mp3_get_infos(char* artist, char* song_name);
 
 #endif //MP3_HELPER_H

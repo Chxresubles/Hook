@@ -1,11 +1,11 @@
 # Hook
-Hook is a music streaming REST web server made in C++ using mongoose
+Hook is a music streaming REST web server made in C using mongoose
 
 # Disclaimer
 This project is still in development. Some functionalities are missing or not working properly.
 
 # Prerequisites
-To compile and run this program, you will need to install the C/C++ compiler g++.
+To compile and run this program, you will need to install a C compiler.
 
 # Compile and run
 
@@ -15,16 +15,25 @@ To run this program, follow these steps:
 $ git clone https://github.com/Chxresubles/Hook.git
 $ cd Hook
 ```
-2. Compile the Hook code
+2. Configure CMake
 ```bash
-$ make Hook
+$ cmake -B build
+```
+3. Compile the Hook code
+```bash
+$ make -C build
+```
+4. Install the Hook binaries
+```bash
+$ make -C build install DESTDIR="<destination/dir>"
 ```
 3. Run the compiled executable
 ```bash
-$ build/Hook.exe
+$ cd <destination/dir>
+$ ./bin/Hook
 ```
 
-The server will listen on http://127.0.0.1:80. It will list the files present in the `build` directory.
+The server will listen on http://127.0.0.1:80. It will list the files present in the `songs` directory.
 
 # Server API
 

@@ -6,10 +6,10 @@ static void fn(struct mg_connection *c, int ev, void *ev_data, void *fn_data) {
 	struct mg_http_serve_opts opts = {
 		.root_dir = ".",			// Server local directory
 		.ssi_pattern = ".shtml",	// SSI file name pattern
-		.extra_headers = nullptr,	// No extra header
-		.mime_types = nullptr,		// No extra MIME types
-		.page404 = nullptr,			// Path to the 404 page
-		.fs = nullptr				// Filesystem implementation (POSIX)
+		.extra_headers = NULL,	// No extra header
+		.mime_types = NULL,		// No extra MIME types
+		.page404 = NULL,			// Path to the 404 page
+		.fs = NULL				// Filesystem implementation (POSIX)
 	};   
 	if (ev == MG_EV_HTTP_MSG) {
 		// Cast the event data to HTTP message
@@ -115,10 +115,10 @@ static void fn(struct mg_connection *c, int ev, void *ev_data, void *fn_data) {
 		else {
 			// Get the artist and song name from the URI
 			int splits;
-			mg_str* split_array;
+			struct mg_str* split_array;
 			if (hm->uri.len > 1) {
 				MG_INFO(("SPLIT URI..."));
-				split_array = split(hm->uri, '/', splits);
+				split_array = split(hm->uri, '/', &splits);
 				MG_INFO(("DONE."));
 				MG_INFO(("Found %d splits", splits));
 				if (splits == 2) {
@@ -130,7 +130,7 @@ static void fn(struct mg_connection *c, int ev, void *ev_data, void *fn_data) {
 					// Get song infos
 					MG_INFO(("GET INFOS OF '%s' by '%s'...", song_name, artist));
 					mp3_infos* infos = mp3_get_infos(artist, song_name);
-					if (infos == nullptr) return;
+					if (infos == NULL) return;
 					MG_INFO(("Title: %s", infos->title.ptr));
 					MG_INFO(("Artist: %s", infos->artist.ptr));
 					MG_INFO(("Duration: %u", infos->duration));

@@ -1,6 +1,6 @@
 #include "utils.h"
 
-mg_str* split(const mg_str char_array, const char delimiter, int& splits) {
+struct mg_str* split(const struct mg_str char_array, const char delimiter, int* splits) {
 	// Initialise indexes of delimiters
 	int indexes[char_array.len];
 	// Do as if the character before the first character is a delimiter
@@ -19,7 +19,7 @@ mg_str* split(const mg_str char_array, const char delimiter, int& splits) {
 	indexes[nFound] = char_array.len;
 
 	//Create return 2D array
-	mg_str* split_array = (mg_str*) malloc(nFound * sizeof(mg_str));
+	struct mg_str* split_array = (struct mg_str*) malloc(nFound * sizeof(struct mg_str));
 
 	// Copy the substring to the return array
 	for (i = 0; i < nFound; i++) {
@@ -30,7 +30,7 @@ mg_str* split(const mg_str char_array, const char delimiter, int& splits) {
 	}
 
 	// Update the number of splits found
-	splits = (int)nFound;
+	*splits = (int)nFound;
 
 	return split_array;
 }
