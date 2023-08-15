@@ -8,12 +8,11 @@ set(INCLUDE_DIR "include")
 set(SONGS_DIR "songs")
 
 file(GLOB C_FILES "${SRC_DIR}/*.c")
-file(GLOB CXX_FILES "${SRC_DIR}/*.cpp")
 file(GLOB H_FILES "${INCLUDE_DIR}/*.h")
 
 configure_file(${INCLUDE_DIR}/config.in ${INCLUDE_DIR}/config.h)
 
-add_executable(${EXE_NAME} ${C_FILES} ${CXX_FILES})
+add_executable(${EXE_NAME} ${C_FILES})
 
 target_include_directories(${EXE_NAME} PUBLIC ${INCLUDE_DIR})
 

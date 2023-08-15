@@ -5,16 +5,16 @@ mp3_infos* mp3_get_infos(char* artist, char* song_name) {
 	// Read JSON file
 	size_t size = 0;
 	char* data = mg_file_read(&mg_fs_posix, "songs/songs.json", &size);
-	mg_str json_content = mg_str_n(data, size);
+	struct mg_str json_content = mg_str_n(data, size);
 
 	// Check if the song exists
 	char* path = mg_mprintf("$.%s.%s", artist, song_name);
 	int offset = mg_json_get(json_content, path, 0);
 	free(path); // Don't forget to free the path
-	if (offset < 0) return nullptr;
+	if (offset < 0) return NULL;
 
 	// Create return struct
-	mp3_infos* infos = new mp3_infos;
+	mp3_infos* infos = (mp3_infos*) malloc(sizeof(mp3_infos));
 
 	// Init variables
 	double d;
