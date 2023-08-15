@@ -1,26 +1,19 @@
-{
-  "Alestorm": {
-    "Shipwrecked": {
-      "filename": "ALESTORM - Shipwrecked.mp3",
-      "duration": 240,
-      "album": "Back Through Time",
-      "date": "3 june 2011"
-    }
-  },
-  "Cal Scruby": {
-    "#monkeybars": {
-      "filename": "Eazy Mac x Cal Scruby - #Monkeybars.mp3",
-      "duration": 177,
-      "album": null,
-      "date": "23 june 2021"
-    }
-  },
-  "Eazy Mac": {
-    "#monkeybars": {
-      "filename": "Eazy Mac x Cal Scruby - #Monkeybars.mp3",
-      "duration": 177,
-      "album": null,
-      "date": "23 june 2021"
-    }
-  }
-}
+[{
+    "id": 0,
+    "title": "Shipwrecked",
+    "artists": ["Alestorm"],
+    "filename": "ALESTORM - Shipwrecked.mp3",
+    "duration": 240,
+    "album": "Back Through Time",
+    "date": "3 june 2011",
+    "playlists": []
+  }, {
+    "id": 1,
+    "title": "#monkeybars",
+    "artists": ["Cal Scruby", "Eazy Mac"],
+    "filename": "Eazy Mac x Cal Scruby - #Monkeybars.mp3",
+    "duration": 177,
+    "album": null,
+    "date": "23 june 2021",
+    "playlists": []
+}]
